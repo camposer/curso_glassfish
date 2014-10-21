@@ -1,0 +1,19 @@
+﻿Cómo configurar proyecto empresarial en Eclipse con Glassfish
+=============================================================
+
+Versiones
+- Glassfish 4.1
+- Eclipse Luna
+- JDK 8
+
+0.- Instalar JDK
+
+1.- Descargar Eclipse Luna para JEE
+https://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/lunasr1
+
+2.- Instalar plugin de Glassfish para Eclipse
+http://marketplace.eclipse.org/content/glassfish-tools-luna
+
+3.- Descargar glassfish
+http://dlc.sun.com.edgesuite.net/glassfish/4.1/release/glassfish-4.1.zip
+

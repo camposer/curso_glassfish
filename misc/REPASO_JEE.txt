@@ -1,0 +1,23 @@
+﻿App empresarial = Web + EJB
+
+EAR = WAR + EJB-JAR
+
+EJB
+
+- Sesión. Lógica de negocio
+	- Stateless. Cuando no necesito del estado
+	- Statefull. Cuando necesito del estado
+- Entidad. Persistencia de datos
+	EJB 2
+		- CMP. Container Managed Persistence
+		- BMP. Bean Managed Persistence
+	EJB 3+
+		- JPA - Java Persistence API
+- MSB (Message Driven Beans). Mensajería (ASYNC) - Producer - Consumer
+	- JMS - Java Message Service
+	- Colas MQ
+	
+Servidores de Aplicaciones (open source)
+
+- Glassfish (Oracle)
+- JBoss (Red Hat)
