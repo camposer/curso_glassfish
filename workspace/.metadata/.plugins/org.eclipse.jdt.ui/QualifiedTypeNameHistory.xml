@@ -21,11 +21,19 @@
 <fullyQualifiedTypeName name="java.util.Hashtable"/>
 <fullyQualifiedTypeName name="upm.pb4agent.team5.util.RowerWrapper"/>
 <fullyQualifiedTypeName name="jade.core.AID"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.StringTokenizer"/>
 <fullyQualifiedTypeName name="jade.lang.acl.ACLMessage"/>
 <fullyQualifiedTypeName name="jade.lang.acl.MessageTemplate"/>
 <fullyQualifiedTypeName name="jade.util.leap.ArrayList"/>
 <fullyQualifiedTypeName name="jade.util.leap.List"/>
 <fullyQualifiedTypeName name="upm.pb4agent.team5.common.Boat"/>
+<fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
+<fullyQualifiedTypeName name="javax.persistence.PersistenceContext"/>
+<fullyQualifiedTypeName name="javax.persistence.Query"/>
+<fullyQualifiedTypeName name="javax.ejb.Stateless"/>
+<fullyQualifiedTypeName name="todolist.dao.TodoDaoRemote"/>
+<fullyQualifiedTypeName name="javax.ejb.EJB"/>
+<fullyQualifiedTypeName name="todolist.model.Todo"/>
+<fullyQualifiedTypeName name="todolist.service.TodoServiceRemote"/>
+<fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>

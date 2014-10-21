@@ -7,3 +7,9 @@ http://ftp.cixug.es/apache//db/derby/db-derby-10.11.1.1/db-derby-10.11.1.1-bin.z
 2.- Descomprimir Derby
 
 3.- Ejecutar DERBY_HOME\bin\startNetworkServer.bat
+
+---
+
+Opcional
+
+- Si ya tiene una BD creada anteriormente, puede copiar la carpeta dentro de DERBY_HOME\bin
