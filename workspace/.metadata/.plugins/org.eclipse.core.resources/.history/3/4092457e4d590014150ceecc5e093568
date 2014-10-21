@@ -1,0 +1,8 @@
+package todolist.dao;
+
+import javax.ejb.Remote;
+
+@Remote
+public interface TodoDaoRemote {
+
+}

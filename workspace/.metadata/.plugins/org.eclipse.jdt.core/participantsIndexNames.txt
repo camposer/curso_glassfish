@@ -1,3 +1,5 @@
 INDEX VERSION 1.127
+C:\Users\Rodolfo\github\curso_glassfish\workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3367278855.index
+\todolistWeb\src
 C:\Users\Rodolfo\workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3713765173.index
 \IJavaBlog\src

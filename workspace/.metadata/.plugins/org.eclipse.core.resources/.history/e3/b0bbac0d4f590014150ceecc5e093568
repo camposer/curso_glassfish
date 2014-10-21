@@ -1,0 +1,52 @@
+package todolist.service;
+
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+
+import todolist.dao.TodoDaoRemote;
+import todolist.model.Todo;
+
+/**
+ * Session Bean implementation class TodoService
+ */
+@Stateless
+@LocalBean
+public class TodoService implements TodoServiceRemote {
+	@EJB
+	private TodoDaoRemote todoDaoRemote;
+
+	@Override
+	public void addTodo(Todo todo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateTodo(Todo todo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeTodo(Integer id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Todo findTodoById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Todo> findTodoAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+}
