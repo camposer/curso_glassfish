@@ -1,0 +1,7 @@
+﻿Cómo crear un proyecto empresarial en Eclipse
+=============================================
+
+Para crear un proyecto empresarial se deben seguir los siguientes pasos:
+1.- File -> New -> Enterprise Application Project
+2.- Colocar nombre
+3.- Crear módulos asociados. Generalmente debería bastar con un proyecto Web y otro EJB
