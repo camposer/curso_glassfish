@@ -17,3 +17,6 @@ http://marketplace.eclipse.org/content/glassfish-tools-luna
 3.- Descargar glassfish
 http://dlc.sun.com.edgesuite.net/glassfish/4.1/release/glassfish-4.1.zip
 
+4.- Configurar servidor dentro del eclipse. En la vista Servers dentro de la perspectiva Java EE, crear nuevo servidor Glassfish y especificar ruta, por ejemplo: C:/Users/Rodolfo/glassfish4/glassfish
+
+
