@@ -1,0 +1,9 @@
+Cómo configurar Derby
+=====================
+
+1.- Descargar Derby
+http://ftp.cixug.es/apache//db/derby/db-derby-10.11.1.1/db-derby-10.11.1.1-bin.zip
+
+2.- Descomprimir Derby
+
+3.- Ejecutar DERBY_HOME\bin\startNetworkServer.bat
