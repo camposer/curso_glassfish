@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="upm.pb4agent.ontology.RealRow"/>
+<fullyQualifiedTypeName name="com.sun.org.apache.bcel.internal.generic.SALOAD"/>
+<fullyQualifiedTypeName name="upm.pb4agent.team5.custom.Manager"/>
+<fullyQualifiedTypeName name="java.lang.Character"/>
+<fullyQualifiedTypeName name="es.decoroso.communicationAgent.bean.Rower"/>
+<fullyQualifiedTypeName name="es.decoroso.communicationAgent.CommunicationAgent"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
+<fullyQualifiedTypeName name="java.util.Comparator"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="java.lang.Comparable"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="upm.pb4agent.team5.custom.RowerWrapper"/>
+<fullyQualifiedTypeName name="jade.util.leap.Iterator"/>
+<fullyQualifiedTypeName name="jade.domain.introspection.ACLMessage"/>
+<fullyQualifiedTypeName name="upm.pb4agent.team5.custom.Rower"/>
+<fullyQualifiedTypeName name="upm.pb4agent.team5.util.ConfigFile"/>
+<fullyQualifiedTypeName name="upm.pb4agent.team5.enumeration.ConfigProperty"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.Hashtable"/>
+<fullyQualifiedTypeName name="upm.pb4agent.team5.util.RowerWrapper"/>
+<fullyQualifiedTypeName name="jade.core.AID"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.StringTokenizer"/>
+<fullyQualifiedTypeName name="jade.lang.acl.ACLMessage"/>
+<fullyQualifiedTypeName name="jade.lang.acl.MessageTemplate"/>
+<fullyQualifiedTypeName name="jade.util.leap.ArrayList"/>
+<fullyQualifiedTypeName name="jade.util.leap.List"/>
+<fullyQualifiedTypeName name="upm.pb4agent.team5.common.Boat"/>
+</qualifiedTypeNameHistroy>

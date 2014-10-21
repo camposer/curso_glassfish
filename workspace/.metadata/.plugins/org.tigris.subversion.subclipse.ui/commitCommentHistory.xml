@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CommitComments>	<CommitComment>Version 6.3. Details in http://moodle.upm.es/titulaciones/oficiales/mod/wiki/view.php?id=199724&amp;page=Group+5</CommitComment>
+	<CommitComment>Version 6.2. Details in http://moodle.upm.es/titulaciones/oficiales/mod/wiki/view.php?id=199724&amp;page=Group+5</CommitComment>
+	<CommitComment>Included some strategy: 
+
+mientras cada rower entra
+el que estaba antes está cansado
+y cada vez es más lento remando
+entonces lo que hago es
+que se van como turnando
+entonces por ejemplo
+comienza
+está el rower 1
+y el tipo rema 50 veces
+entonces cuando se monta el segundo
+rema sólo hasta quedar empatado con el otro (porque sólo puede remar uno a la vez con un oar)
+entonces al alcanzarlo
+ya comienzan a remar los dos &quot;al mismo tiempo&quot;
+y así sucesivamente
+eso podría cambiarse
+no tiene mayor lógica
+siempre son STRONG los rows</CommitComment>
+	<CommitComment>Version 6.1. Details in http://moodle.upm.es/titulaciones/oficiales/mod/wiki/view.php?id=199724&amp;page=Group+5</CommitComment>
+	<CommitComment>Removes System.err.println for Debugging.</CommitComment>
+	<CommitComment>Version 6.0. Details in http://moodle.upm.es/titulaciones/oficiales/mod/wiki/view.php?id=199724&amp;page=Group+5</CommitComment>
+	<CommitComment>Libs</CommitComment>
+</CommitComments>

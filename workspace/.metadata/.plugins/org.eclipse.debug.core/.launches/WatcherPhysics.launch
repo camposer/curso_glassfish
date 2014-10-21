@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/PB-4/src/upm/pb4agent/team5/util/WatcherPhysics.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="upm.pb4agent.team5.util.WatcherPhysics"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="PB-4"/>
+</launchConfiguration>
