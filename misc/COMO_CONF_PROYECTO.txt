@@ -22,5 +22,14 @@ Añadir JDBC Resource
 	- Seleccionar tipo (javax.sql.DataSource)
 	- Añadir parámetros de configuración a la BD
 		- user: user
-		- password: password
+		- password: 123
+		- database: todolistdb
+		- connectionAttributes: ;create=true
 8.- Agregar JDBC Resource (Resources -> JDBC -> JDBC Resources)
+	- Nombre: jdbc/todolistdb
+	- Connection pool: todolistdbPool
+9.- Reiniciar el servidor
+10.- Ejecutar:
+	http://localhost:8080/todolistWeb/index
+	
+NOTA: Recuerde que el derby debe estar ejecutándose
