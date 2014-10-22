@@ -28,5 +28,6 @@ Curso de Glassfish
 	- https://glassfish.java.net/docs/4.0/ha-administration-guide.pdf
 - Managing Users and Groups on the GlassFish Server
 	- http://docs.oracle.com/javaee/6/tutorial/doc/bnbxj.html#bnbxr
-
+- Curso de Seguridad en JEE
+	- https://github.com/camposer/curso_seguridad-jee
 

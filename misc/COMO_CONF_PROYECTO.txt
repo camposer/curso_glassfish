@@ -32,4 +32,4 @@ Añadir JDBC Resource
 10.- Ejecutar:
 	http://localhost:8080/todolistWeb/index
 	
-NOTA: Recuerde que el derby debe estar ejecutándose
+NOTA: Recuerde que el derby debe estar ejecutándose y la bd instalada!
