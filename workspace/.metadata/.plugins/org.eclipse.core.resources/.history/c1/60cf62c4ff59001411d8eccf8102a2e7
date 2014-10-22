@@ -1,0 +1,22 @@
+package springavanzado.ejercicio1.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import springavanzado.ejercicio1.form.OrdenadorForm;
+import springavanzado.ejercicio1.service.OrdenadorService;
+
+@Controller
+@RequestMapping("/ordenador/*")
+public class OrdenadorController {
+	@Autowired
+	private OrdenadorService ordenadorService;
+	
+	@ModelAttribute("ordenadorForm")
+	public OrdenadorForm ordenadorForm() {
+		return new OrdenadorForm();
+	}
+	
+}

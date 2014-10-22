@@ -1,0 +1,10 @@
+package springavanzado.ejercicio1.form;
+
+public class OrdenadorForm {
+	private Integer id;
+	private String nombre;
+	private String serial;
+	private Integer personaId;
+	
+	
+}
