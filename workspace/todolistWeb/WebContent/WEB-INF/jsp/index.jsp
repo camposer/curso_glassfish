@@ -30,5 +30,6 @@
 			}
 		 %>
 	</div>
+	<a href="admin/index">Admin</a>
 </body>
 </html>
