@@ -1,0 +1,26 @@
+Cómo configurar proyecto
+========================
+
+1.- Descargar y descomprimir el código del repositorio
+2.- Agregar el servidor. En la vista Servers (perspectiva Java EE), añadir un 
+servidor Glassfish (debe haber instalado previamente el plugin para Eclipse).
+3.- Importar proyectos en el espacio de trabajo (3 - todolist, todolistWeb, todolistEJB)
+	- Puede utilizar el workspace en el repositorio (del Instructor)
+	- Puede utilizar un workspace pre-existente (***)
+		- File -> Import -> Existing projects into Workspace -> Select archive (seleccionas el zip)
+4.- Agregar proyecto al servidor. Clic derecho sobre el proyecto y "Add and remove"	
+5.- Iniciar el servidor
+
+===
+
+Añadir JDBC Resource
+
+6.- Ejecutar: http://localhost:4848
+7.- Agregar JDBC Connection Pool (Resources -> JDBC -> JDBC Connection Pools)
+	- Colocar un nombre (Ej. todolistdbPool)
+	- Seleccionar driver (Derby30)
+	- Seleccionar tipo (javax.sql.DataSource)
+	- Añadir parámetros de configuración a la BD
+		- user: user
+		- password: password
+8.- Agregar JDBC Resource (Resources -> JDBC -> JDBC Resources)
