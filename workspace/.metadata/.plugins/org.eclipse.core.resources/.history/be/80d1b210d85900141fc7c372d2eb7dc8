@@ -1,9 +1,0 @@
-package springavanzado.ejercicio1.editor;
-
-import java.beans.PropertyEditorSupport;
-
-public class FechaEditor extends PropertyEditorSupport {
-	
-	
-
-}

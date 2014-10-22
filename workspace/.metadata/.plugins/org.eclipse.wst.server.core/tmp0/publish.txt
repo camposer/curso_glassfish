@@ -1,3 +1,0 @@
-#GlassFish 3
-#Wed Oct 22 16:45:35 CEST 2014
-org.eclipse.jst.jee.server\:todolist=C\:\\Users\\Rodolfo\\glassfish4\\glassfish\\domains\\domain1\\eclipseApps\\todolist

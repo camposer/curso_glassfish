@@ -1,3 +1,0 @@
-INDEX VERSION 1.3+C:\Users\Rodolfo\github\curso_glassfish\workspace\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3488661413.index
-2579626297.index
