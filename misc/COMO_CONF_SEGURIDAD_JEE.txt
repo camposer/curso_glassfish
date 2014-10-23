@@ -1,0 +1,6 @@
+Cómo configurar seguridad declarativa en Glassfish
+==================================================
+
+Para que la aplicación funcione sin declarar los roles y principals en 
+el fichero WEB-INF/glassfish-web.xml, se debe seleccionar la opción: 
+Configuration -> Security -> server-config -> Default Principal To Role Mapping

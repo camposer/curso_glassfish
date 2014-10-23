@@ -16,7 +16,7 @@ import todolist.model.Todo;
  */
 @Stateless
 @LocalBean
-@DeclareRoles({"ADMIN", "USER"})
+@DeclareRoles({"ADMIN", "CUALQUIER_COSA"})
 public class TodoService implements TodoServiceRemote {
 	@EJB
 	private TodoDaoRemote todoDaoRemote;
