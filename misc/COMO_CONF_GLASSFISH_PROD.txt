@@ -1,0 +1,13 @@
+Cómo instalar Glassfish "en producción"
+=======================================
+
+1.- Descargar 
+http://dlc.sun.com.edgesuite.net/glassfish/4.1/release/glassfish-4.1.zip
+
+2.- Descomprimir y mover
+$ unzip -x glassfish-4.1.zip
+$ sudo mv glassfish4 /usr/share/
+
+3.- Crear un usuario del sistema para glassfish
+$ sudo useradd -d /usr/share/glassfish4 -M -U -s /sbin/nologin glassfish
+

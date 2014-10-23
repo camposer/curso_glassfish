@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Login</title>
+	<meta charset="ISO-8859-1">
+	<title>Login</title>
+	<script src="/todolistWeb/js/crypto/rollups/sha256.js"></script>
+	<script>
+		var clic = function() {
+			var clearPassword = document.getElementById('clearPassword').value;
+			var sha256 = CryptoJS.SHA256(clearPassword);
+			document.getElementById('password').value = clearPassword;
+			//document.getElementById('password').value = sha256;
+			
+			return true;
+		};
+	</script>
 </head>
 <body>
 	<h1>Login</h1>
@@ -14,11 +25,14 @@
 			</tr>
 			<tr>
 				<td>Contraseña:</td>
-				<td><input type="password" name="j_password"></td>
+				<td>
+					<input type="text" id="clearPassword">
+					<input type="text" id="password" name="j_password">
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="submit" value="Entrar"/>
+					<input type="submit" value="Entrar" onclick="return clic();"/>
 				</td>
 			</tr>
 		</table>
