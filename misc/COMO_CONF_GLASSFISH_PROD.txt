@@ -11,3 +11,18 @@ $ sudo mv glassfish4 /usr/share/
 3.- Crear un usuario del sistema para glassfish
 $ sudo useradd -d /usr/share/glassfish4 -M -U -s /sbin/nologin glassfish
 
+4.- Otorgar todos los permisos de la instalación al usuario glassfish
+$ sudo chown -R glassfish:glassfish /usr/share/glassfish4
+
+5.- Agregar el script de inicialización en /etc/init.d/glassfish
+#!/bin/sh
+export GLASSFISH_HOME=/usr/share/glassfish4
+
+/bin/su -s /bin/bash glassfish $GLASSFISH_HOME/bin/asadmin stop-domain
+/bin/su -s /bin/bash glassfish $GLASSFISH_HOME/bin/asadmin start-domain
+
+6.- Dar permisos de ejecución al script de incialización
+$ sudo chmod +x /etc/init.d/glassfish
+
+7.- Levantar el glassfish
+$ sudo /etc/init.d/glassfish
