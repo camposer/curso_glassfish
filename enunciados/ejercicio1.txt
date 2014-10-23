@@ -1,0 +1,7 @@
+Ejercicio 1
+===========
+
+1.- Configurar un REALM JDBC que utilice como BBDDD Derby
+- http://docs.oracle.com/javaee/6/tutorial/doc/glxgo.html
+
+2.- Debe agregar al menos un usuario admin con rol ADMIN
