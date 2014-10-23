@@ -9,5 +9,6 @@
 <body>
 	Página que sólo deberían ver los administradores!!!<br/>
 	<a href="../index">Index</a>
+	<a href="../session/close">Cerrar sesión</a>
 </body>
 </html>
