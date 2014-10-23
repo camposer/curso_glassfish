@@ -26,3 +26,12 @@ $ sudo chmod +x /etc/init.d/glassfish
 
 7.- Levantar el glassfish
 $ sudo /etc/init.d/glassfish
+
+----------
+
+Para acceder de forma remota, debemos asignar una contraseña al usuario admin y 
+luego habilitar el acceso remoto:
+$ sudo ./asadmin change-admin-password
+$ sudo ./asadmin enable-secure-admin
+
+NOTA: La contraseña del admin por defecto es vacía
