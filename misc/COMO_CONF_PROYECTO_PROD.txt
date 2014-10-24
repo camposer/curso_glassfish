@@ -1,7 +1,79 @@
 Cómo configurar el proyecto en producción
 =========================================
 
+Pre-requisitos
+
+1.- Añadido al /etc/hosts ip interna (daba error al levantar el contenedor EJB)
+127.0.0.1       ip-172-30-0-99.eu-west-1.compute.internal
+
+2.- Instalar JDK!!
+# yum install java-1.7.0-openjdk-devel.x86_64
+
+3.- Reiniciar glassfish
+# /etc/init.d/glassfish
+
+---
+
 1.- Iniciar el derby
 GLASSFISH_HOME/bin # ./asadmin start-database
 
-2.- Conectar al derby y ejecutar script de BD
+2.- Conectar al derby y ejecutar script de BD (todolistdb). Podemos utilizar Eclipse para esto
+jdbc:derby://localhost:1527/todolistdb
+user: user
+password: 123
+
+---
+
+Configuración del REALM
+
+NOTA: El fichero glassfish-web.xml debe tener el mapeo grupo-rol
+
+1.- Instalar MySQL
+# yum install mysql-server.x86_64
+# /etc/init.d/mysqld start
+
+2.- Crear un usuario nuevo para conectarse al mysql
+# mysql -u root
+mysql> GRANT ALL privileges ON *.* TO 'admin'@'localhost' IDENTIFIED BY 'admin';
+
+3.- Crear BD
+mysql> CREATE DATABASE jdbcrealm;
+
+4.- Ejecutar el script
+# mysql -u admin --password=admin jdbcrealm < user.sql
+
+5.- Instalar el driver de MySQL
+	- Descargar el driver: http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.33.zip
+	- Instalar el driver de mysql. Descargar el mysql-connector/J y copiar el fichero mysql-connector-java-5.1.33-bin.jar 
+	dentro de GLASSFISH_HOME/glassfish/domains/domain1/lib/ext
+	- Cambiar permisos! # chown glassfish:glassfish GLASSFISH_HOME/glassfish/domains/domain1/lib/ext/mysql-connector-java-5.1.33-bin.jar 
+	- Reiniciar glassfish
+
+6.- Configurar el pool y el recource correspondiente al REALM (igual a como lo hicimos con derby)
+- user: admin
+- password: admin
+- URL: jdbc:mysql://localhost:3306/jdbcrealm
+
+7.- Configurar el REALM
+- Realm Name: jdbc
+- Class Name: com.sun.enterprise.security.auth.realm.jdbc.JDBCRealm
+- JAAS Context: jdbcRealm
+- JNDI: jdbc/jdbcrealm
+- User Table: jdbcrealm.users
+- User Name Column: username
+- Password Column: password
+- Group Table: jdbcrealm.groups
+- Group Name Column: groupname
+- Password Encryption Algorithm: SHA-256
+- Charset: UTF-8
+
+8.- Reiniciar el servidor 
+# /etc/init.d/glassfish
+
+9.- Desplegar la aplicación (sino fue desplegada antes)
+
+10.- Ejecutar
+http://54.171.124.113:8080/todolistWeb/index
+
+	
+

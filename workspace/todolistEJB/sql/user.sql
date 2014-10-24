@@ -18,4 +18,4 @@ INSERT INTO users VALUES('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4
 INSERT INTO groups VALUES('admin', 'ADMIN');
 INSERT INTO groups VALUES('admin', 'USER');
 
--- user: admin, password: admin
+-- user: admin, password: admin (sha256)

@@ -30,4 +30,5 @@ Curso de Glassfish
 	- http://docs.oracle.com/javaee/6/tutorial/doc/bnbxj.html#bnbxr
 - Curso de Seguridad en JEE
 	- https://github.com/camposer/curso_seguridad-jee
-
+- Sitio en la Web para generar digests
+	- http://www.md5calc.com/
