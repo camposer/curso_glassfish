@@ -11,10 +11,10 @@ CREATE TABLE todo (
 );
 
 INSERT INTO TODO(titulo, texto, status)
-VALUES('Número 1', 'Texto número 1', 0);
+VALUES('NÃºmero 1', 'Texto nÃºmero 1', 0);
 INSERT INTO TODO(titulo, texto, status)
-VALUES('Número 2', 'Texto número 2', 0);
+VALUES('NÃºmero 2', 'Texto nÃºmero 2', 0);
 INSERT INTO TODO(titulo, texto, status)
-VALUES('Número 3', 'Texto número 3', 0);
+VALUES('NÃºmero 3', 'Texto nÃºmero 3', 0);
 
 SELECT * FROM TODO;

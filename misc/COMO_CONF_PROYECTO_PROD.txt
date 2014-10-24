@@ -1,0 +1,7 @@
+Cómo configurar el proyecto en producción
+=========================================
+
+1.- Iniciar el derby
+GLASSFISH_HOME/bin # ./asadmin start-database
+
+2.- Conectar al derby y ejecutar script de BD
