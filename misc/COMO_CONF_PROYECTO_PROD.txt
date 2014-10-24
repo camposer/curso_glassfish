@@ -26,7 +26,7 @@ password: 123
 
 Configuración del REALM
 
-NOTA: El fichero glassfish-web.xml debe tener el mapeo grupo-rol
+NOTA: El fichero WEB-INF/glassfish-web.xml dentro del proyecto web debe tener el mapeo grupo-rol
 
 1.- Instalar MySQL
 # yum install mysql-server.x86_64
@@ -50,9 +50,13 @@ mysql> CREATE DATABASE jdbcrealm;
 	- Reiniciar glassfish
 
 6.- Configurar el pool y el recource correspondiente al REALM (igual a como lo hicimos con derby)
+- MySQL
+- Resource Type: javax.sql.DataSource
 - user: admin
 - password: admin
 - URL: jdbc:mysql://localhost:3306/jdbcrealm
+
+NOTA: Finalizar con un PING para validar conexión con el servidor
 
 7.- Configurar el REALM
 - Realm Name: jdbc
