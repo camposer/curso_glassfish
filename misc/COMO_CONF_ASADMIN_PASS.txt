@@ -1,0 +1,3 @@
+GLASSFISH_HOME/bin# cat pass
+AS_ADMIN_PASSWORD=admin
+GLASSFISH_HOME/bin# ./asadmin -W pass list \*

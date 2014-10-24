@@ -32,3 +32,5 @@ Curso de Glassfish
 	- https://github.com/camposer/curso_seguridad-jee
 - Sitio en la Web para generar digests
 	- http://www.md5calc.com/
+- How to Create a Secure JSF/JPA Web App on Glassfish 4 (video)
+	- https://www.youtube.com/watch?v=1xsU6juUZd0
