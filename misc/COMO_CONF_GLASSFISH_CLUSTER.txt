@@ -1,0 +1,52 @@
+Cómo configurar un cluster
+==========================
+
+ASUNCIONES:
+- Servidor 1: DAS
+- Servidor 2 (sólo instancia)
+- Todos los comandos se deben ejecutar con el usuario glassfish
+
+1.- Instalar el glassfish como se describe en COMO_CONF_GLASSFISH_PROD.txt
+
+2.- Logearme como usuario glassfish (no trabajar como root!)
+# sudo su - glassfish
+
+3.- Levantar la consola de administración (dominio)
+$ bin/asadmin start-domain
+
+4.- Crear el cluster (nombre: c1)
+$ bin/asadmin create-cluster c1
+
+5.- Crear instancia local en Servidor 1 (máquina DAS)
+$ bin/asadmin -W pass create-local-instance --cluster c1 i1
+
+6.- Configuración de instancias remotas. Debo tener acceso SSH con claves autorizadas a los otros servidores.
+http://camposer-techie.blogspot.com.es/2010/07/como-configurar-ssh-para-realizar.html
+
+6.1. Generando claves privada y pública. Dentro del DAS ejecutar:
+$ ssh-keygen -t rsa
+
+6.2. Otorgando permisos al DAS. Crear una carpeta .ssh en el servidor 2
+$ mkdir .ssh && chmod 700 .ssh
+$ cat id_rsa.pub > .ssh/authorized_keys && chmod 600 .ssh/authorized_keys
+
+NOTA: El fichero id_rsa.pub es generado en el DAS (paso 6.1)
+
+6.3. Verificar el acceso SSH. Desde el DAS, debería poder acceder simplemente ejecutando:
+$ ssh IP_SERVIDOR2
+
+7. Crear nodo SSH en el DAS para el Servidor 2
+$ bin/asadmin create-node-ssh -nodehost IP_SERVIDOR2 n2
+
+8. Crear instancia local en Servidor 2. En el Servidor 2 ejecutar:
+$ bin/asadmin --host 172.30.0.123 create-local-instance --cluster c1 i2 --node n2
+
+9. Comprobar estado de las instancias
+$ bin/asadmin list-instances
+
+10. Iniciar instancias (si no estuviesen ejecutándose/runing)
+$ bin/asadmin start-local-instance NOMBRE_INSTANCIA
+
+NOTA:
+- Puede que se requiera configurar los nombres de los servidores con sus IP dentro
+del fichero /etc/hosts
