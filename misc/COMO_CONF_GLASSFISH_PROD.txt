@@ -1,5 +1,8 @@
 Cómo instalar Glassfish "en producción"
 =======================================
+0.- Dependencias
+- WGET y UNZIP. sudo yum install wget unzip
+- JDK. sudo yum install java-1.7.0-openjdk-devel.x86_64
 
 1.- Descargar 
 http://dlc.sun.com.edgesuite.net/glassfish/4.1/release/glassfish-4.1.zip
@@ -9,7 +12,7 @@ $ unzip -x glassfish-4.1.zip
 $ sudo mv glassfish4 /usr/share/
 
 3.- Crear un usuario del sistema para glassfish
-$ sudo useradd -d /usr/share/glassfish4 -M -U -s /sbin/nologin glassfish
+$ sudo useradd -d /usr/share/glassfish4 -M -U -s /bin/bash glassfish
 
 4.- Otorgar todos los permisos de la instalación al usuario glassfish
 $ sudo chown -R glassfish:glassfish /usr/share/glassfish4

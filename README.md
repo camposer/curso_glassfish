@@ -34,3 +34,5 @@ Curso de Glassfish
 	- http://www.md5calc.com/
 - How to Create a Secure JSF/JPA Web App on Glassfish 4 (video)
 	- https://www.youtube.com/watch?v=1xsU6juUZd0
+- Glassfish 3.1 – Clustering Tutorial
+	- https://javadude.wordpress.com/2011/04/25/glassfish-3-1-clustering-tutorial/

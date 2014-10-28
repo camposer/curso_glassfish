@@ -1,0 +1,21 @@
+Clustering
+==========
+
+Componentes principales JEE:
+- Web
+- EJB
+- Mensajería (MQ) - Productor -> Consumidor
+
+Por qué Cluster?
+- Tolerancia a fallos (failover)
+- Balanceo de cargas (impacto directo en rendimiento - escalabilidad)
+
+Componentes involucrados:
+- Dominio - Agrupación de configuraciones
+- Nodo - Asociación directa con la JVM
+	- CONFIG. Dentro de un cluster tiene que haber al menos 1 nodo de configuraciones
+	- SSH. *nix y Linux
+	- DCOM. Windows
+- Instancia - Contexto de ejecución (pueden haber varias por Nodo)
+- Cluster - Agrupación de instancias
+
