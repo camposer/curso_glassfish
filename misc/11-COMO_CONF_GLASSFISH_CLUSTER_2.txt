@@ -1,0 +1,27 @@
+Cómo configurar cluster completamente desde el DAS con GMS unicast
+==================================================================
+
+1.- Crear propiedad del sistema indicando el puerto donde escuchará el GMS
+asadmin> create-system-properties GMS_LISTENER_PORT-c1=9090
+
+2.- Reiniciar dominio
+asadmin> restart-domain
+
+3.- Crear cluster indicando los nodos que lo conformarán (GMS_DISCOVERY_URI_LIST)
+asadmin> create-cluster --properties 'GMS_DISCOVERY_URI_LIST=172.30.0.123,172.30.0.12' c1
+
+3.- Crear nodo remoto
+asadmin> create-node-ssh --nodehost hostname-n2 n2
+
+4.- Crear instancias (contempla una instancia local en el DAS)
+asadmin> create-local-instance --cluster c1 i1
+asadmin> create-instance --node n2 --cluster c1 i2
+
+5.- Reiniciar dominio
+asadmin> start-cluster c1
+
+6.- Desplegar clusterjsp.war 
+- http://blog.c2b2.co.uk/2014/04/how-to-set-up-cluster-with-tomcat-8.html
+- https://community.jboss.org/servlet/JiveServlet/download/588259-27006/clusterjsp.war
+
+NOTA: Importante validar los puertos HTTP de cada una de las instancias, por ejemplo: 28080
