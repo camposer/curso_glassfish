@@ -20,6 +20,10 @@ asadmin> create-instance --node n2 --cluster c1 i2
 5.- Reiniciar dominio
 asadmin> start-cluster c1
 
+6.- Verificar instancias
+asadmin> list-instances c1
+asadmin> get-health c1
+
 6.- Desplegar clusterjsp.war 
 - http://blog.c2b2.co.uk/2014/04/how-to-set-up-cluster-with-tomcat-8.html
 - https://community.jboss.org/servlet/JiveServlet/download/588259-27006/clusterjsp.war
