@@ -1,0 +1,15 @@
+﻿Cómo configurar el proyecto en Eclipse
+======================================
+
+1.- Descargar y descomprimir el código del repositorio
+2.- Agregar el servidor. En la vista Servers (perspectiva Java EE), añadir un 
+servidor Glassfish (debe haber instalado previamente el plugin para Eclipse).
+3.- Importar proyectos en el espacio de trabajo (3 - todolist, todolistWeb, todolistEJB)
+	- Puede utilizar el workspace en el repositorio (del Instructor)
+	- Puede utilizar un workspace pre-existente (***)
+		- File -> Import -> Existing projects into Workspace -> Select archive (seleccionas el zip)
+4.- Agregar proyecto al servidor. Clic derecho sobre el proyecto y "Add and remove"	
+5.- Iniciar el servidor
+6.- Configurar proyecto en Glassfish (ver 07-COMO_CONF_PROYECTO_GLASSFISH.txt)
+7.- Ejecutar:
+	http://localhost:8080/todolistWeb/index

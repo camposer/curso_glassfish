@@ -1,32 +1,34 @@
-Cómo configurar el proyecto en producción
-=========================================
+﻿Cómo configurar el proyecto en glassfish
+========================================
 
-Pre-requisitos
-
-1.- Añadido al /etc/hosts ip interna (daba error al levantar el contenedor EJB)
-127.0.0.1       ip-172-30-0-99.eu-west-1.compute.internal
-
-2.- Instalar JDK!!
-# yum install java-1.7.0-openjdk-devel.x86_64
-
-3.- Reiniciar glassfish
-# /etc/init.d/glassfish
-
----
+Configuración BD de la APP
 
 1.- Iniciar el derby
-GLASSFISH_HOME/bin # ./asadmin start-database
+$ ./asadmin start-database
 
-2.- Conectar al derby y ejecutar script de BD (todolistdb). Podemos utilizar Eclipse para esto
-jdbc:derby://localhost:1527/todolistdb
-user: user
-password: 123
+2.- Ejecutar: http://localhost:4848
+
+3.- Agregar JDBC Connection Pool (Resources -> JDBC -> JDBC Connection Pools)
+	- Colocar un nombre (Ej. todolistdbPool)
+	- Seleccionar driver (Derby30)
+	- Seleccionar tipo (javax.sql.DataSource)
+	- Añadir parámetros de configuración a la BD
+		- user: user
+		- password: 123
+		- database: todolistdb
+		- connectionAttributes: ;create=true
+
+4.- Agregar JDBC Resource (Resources -> JDBC -> JDBC Resources)
+	- Nombre: jdbc/todolistdb
+	- Connection pool: todolistdbPool
 
 ---
 
 Configuración del REALM
 
-NOTA: El fichero WEB-INF/glassfish-web.xml dentro del proyecto web debe tener el mapeo grupo-rol
+NOTAS:
+- El fichero WEB-INF/glassfish-web.xml dentro del proyecto web debe tener el mapeo grupo-rol
+- Para que la aplicación funcione sin declarar los roles y principals en el fichero WEB-INF/glassfish-web.xml, se debe seleccionar la opción: Configuration -> Security -> server-config -> Default Principal To Role Mapping
 
 1.- Instalar MySQL
 # yum install mysql-server.x86_64
@@ -78,6 +80,3 @@ NOTA: Finalizar con un PING para validar conexión con el servidor
 
 10.- Ejecutar
 http://54.171.124.113:8080/todolistWeb/index
-
-	
-
