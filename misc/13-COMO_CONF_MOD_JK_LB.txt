@@ -1,5 +1,8 @@
-Cómo configurar mod_jk con glassfish (sin balanceo)
+Cómo configurar mod_jk con glassfish (con balanceo)
 ===================================================
+
+Esta instalación considera 3 servidores, uno de ellos es el DAS y los otros 2 sólo
+albergan instancias de un cluster configurado 
 
 1.- Instalar Apache HTTP Server y compilador de C
 # yum install httpd.x86_64 httpd-devel.x86_64 gcc.x86_64
@@ -42,8 +45,7 @@ JkRequestLogFormat "%w %V %T"
 # Mount your applications
 # The default setting only sends Java application data to mod_jk.
 # Use the commented-out line to send all URLs through mod_jk.
-#JkMount /clusterjsp/* loadbalancer
-JkMount /clusterjsp/* worker1
+JkMount /clusterjsp/* loadbalancer
 
 # Add shared memory.
 # This directive is present with 1.2.10 and
@@ -60,22 +62,58 @@ Allow from 127.0.0.1
 </Location>
 
 4.- Agregar configuraciones de workers (/etc/httpd/conf/workers.properties)
-# Define 1 real worker using ajp13
-worker.list=worker1
-# Set properties for worker1 (ajp13)
-worker.worker1.type=ajp13
-worker.worker1.host=localhost
-worker.worker1.port=8009
+# Define list of workers that will be used
+# for mapping requests
+worker.list=loadbalancer,status
+
+# Define Node1
+# modify the host as your host IP or DNS name.
+worker.n2.port=8009
+worker.n2.host=ip-172-30-0-12.eu-west-1.compute.internal
+worker.n2.type=ajp13
+worker.n2.ping_mode=A
+worker.n2.lbfactor=1
+
+# Define Node2
+# modify the host as your host IP or DNS name.
+worker.n3.port=8009
+worker.n3.host=ip-172-30-0-190.eu-west-1.compute.internal
+worker.n3.type=ajp13
+worker.n3.ping_mode=A
+worker.n3.lbfactor=1
+
+# Load-balancing behavior
+worker.loadbalancer.type=lb
+worker.loadbalancer.balance_workers=n2,n3
+worker.loadbalancer.sticky_session=1
+
+# Status worker for managing load balancer
+worker.status.type=status
 
 5.- Reiniciar Apache
 	# service httpd restart
 
-6.- Crear el conector AJP en el glassfish. Como usuario glassfish ejecutar:
-	$ bin/asadmin -W pass create-network-listener --protocol http-listener-1 \
-	--listenerport 8009 --jkenabled true jk-connector
+6.- Añadir nodos al servidor (previamente debe haber configurado el acceso SSH a HOSTNAME2 y HOSTNAME3)
+	$  bin/asadmin create-node-ssh --nodehost HOSTNAME2 n2
+	$  bin/asadmin create-node-ssh --nodehost HOSTNAME3 n3
+	
+7.- Crear cluster
+	$  bin/asadmin create-create-cluster c1
 
-7.- Desplegar una aplicación (Ej. clusterjsp) dentro del server (no cluster!!!)
+8.- Crear instancias del cluster
+	$ bin/asadmin -W pass create-instance --node n2 --cluster c1 i2
+	$ bin/asadmin -W pass create-instance --node n3 --cluster c1 i3
+
+9.- Crear conector AJP del cluster
+	$ bin/asadmin -W pass create-network-listener --protocol http-listener-1 \
+	--listenerport 8009 --jkenabled true --target c1 jk-connector
+
+10.- Reciniciar DAS
+	$ sudo /etc/init.d/glassfish
+	
+11.- Desplegar una aplicación (Ej. clusterjsp) dentro del cluster
 
 8.- Probar, ejecutar:
-	http://IP_SERVIDOR:8080/clusterjsp/ (GLASSFISH!!!)
-	http://IP_SERVIDOR/clusterjsp/ (mod_jk)
+	http://HOSTNAME2:28080/clusterjsp/ (GLASSFISH!!!)
+	http://HOSTNAME3:28080/clusterjsp/ (GLASSFISH!!!)
+	http://IP_DAS/clusterjsp/ (mod_jk)
