@@ -1,0 +1,2 @@
+Compilado para kernel:
+Linux 3.10.0-123.8.1.el7.x86_64 x86_64
