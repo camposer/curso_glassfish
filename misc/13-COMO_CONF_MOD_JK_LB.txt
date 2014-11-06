@@ -2,7 +2,8 @@ Cómo configurar mod_jk con glassfish (con balanceo)
 ===================================================
 
 Esta instalación considera 3 servidores, uno de ellos es el DAS y los otros 2 sólo
-albergan instancias de un cluster configurado 
+albergan instancias de un cluster configurado. El DAS tiene conocimiento de todos los
+hostnames (probablemente deba agregarlos a /etc/hosts)
 
 1.- Instalar Apache HTTP Server y compilador de C
 # yum install httpd.x86_64 httpd-devel.x86_64 gcc.x86_64
@@ -20,75 +21,76 @@ NOTA:
 	HOME_MOD-JK-SRC$ sudo cp ./apache-2.0/mod_jk.so /etc/httpd/modules/
 
 4.- Crear el fichero de configuración (/etc/httpd/conf.d/mod-jk.conf) para apache:
-# Load mod_jk module
-# Specify the filename of the mod_jk lib
-LoadModule jk_module modules/mod_jk.so
+	# Load mod_jk module
+	# Specify the filename of the mod_jk lib
+	LoadModule jk_module modules/mod_jk.so
 
-# Where to find workers.properties
-JkWorkersFile conf/workers.properties
+	# Where to find workers.properties
+	JkWorkersFile conf/workers.properties
 
-# Where to put jk logs
-JkLogFile logs/mod_jk.log
+	# Where to put jk logs
+	JkLogFile logs/mod_jk.log
 
-# Set the jk log level [debug/error/info]
-JkLogLevel info
+	# Set the jk log level [debug/error/info]
+	JkLogLevel info
 
-# Select the log format
-JkLogStampFormat  "[%a %b %d %H:%M:%S %Y]"
+	# Select the log format
+	JkLogStampFormat  "[%a %b %d %H:%M:%S %Y]"
 
-# JkOptions indicates to send SSK KEY SIZE
-JkOptions +ForwardKeySize +ForwardURICompat -ForwardDirectories
+	# JkOptions indicates to send SSK KEY SIZE
+	JkOptions +ForwardKeySize +ForwardURICompat -ForwardDirectories
 
-# JkRequestLogFormat
-JkRequestLogFormat "%w %V %T"
+	# JkRequestLogFormat
+	JkRequestLogFormat "%w %V %T"
 
-# Mount your applications
-# The default setting only sends Java application data to mod_jk.
-# Use the commented-out line to send all URLs through mod_jk.
-JkMount /clusterjsp/* loadbalancer
+	# Mount your applications
+	# The default setting only sends Java application data to mod_jk.
+	# Use the commented-out line to send all URLs through mod_jk.
+	JkMount /clusterjsp/* loadbalancer
+	JkMount /clusterjsp loadbalancer
 
-# Add shared memory.
-# This directive is present with 1.2.10 and
-# later versions of mod_jk, and is needed for
-# for load balancing to work properly
-JkShmFile logs/jk.shm
+	# Add shared memory.
+	# This directive is present with 1.2.10 and
+	# later versions of mod_jk, and is needed for
+	# for load balancing to work properly
+	JkShmFile logs/jk.shm
 
-# Add jkstatus for managing runtime data
-<Location /jkstatus/>
-JkMount status
-Order deny,allow
-Deny from all
-Allow from 127.0.0.1
-</Location>
+	# Add jkstatus for managing runtime data
+	<Location /jkstatus/>
+	JkMount status
+	Order deny,allow
+	Deny from all
+	Allow from 127.0.0.1
+	</Location>
 
 4.- Agregar configuraciones de workers (/etc/httpd/conf/workers.properties)
-# Define list of workers that will be used
-# for mapping requests
-worker.list=loadbalancer,status
+	# Define list of workers that will be used
+	# for mapping requests
+	worker.list=loadbalancer,status
 
-# Define Node1
-# modify the host as your host IP or DNS name.
-worker.n2.port=8009
-worker.n2.host=ip-172-30-0-12.eu-west-1.compute.internal
-worker.n2.type=ajp13
-worker.n2.ping_mode=A
-worker.n2.lbfactor=1
+	# Define Node1
+	# modify the host as your host IP or DNS name.
+	worker.n2.port=8009
+	worker.n2.host=HOSTNAME2
+	worker.n2.type=ajp13
+	worker.n2.ping_mode=A
+	worker.n2.lbfactor=1
 
-# Define Node2
-# modify the host as your host IP or DNS name.
-worker.n3.port=8009
-worker.n3.host=ip-172-30-0-190.eu-west-1.compute.internal
-worker.n3.type=ajp13
-worker.n3.ping_mode=A
-worker.n3.lbfactor=1
+	# Define Node2
+	# modify the host as your host IP or DNS name.
+	worker.n3.port=8009
+	worker.n3.host=HOSTNAME3
+	worker.n3.type=ajp13
+	worker.n3.ping_mode=A
+	worker.n3.lbfactor=1
 
-# Load-balancing behavior
-worker.loadbalancer.type=lb
-worker.loadbalancer.balance_workers=n2,n3
-worker.loadbalancer.sticky_session=1
+	# Load-balancing behavior
+	worker.loadbalancer.type=lb
+	worker.loadbalancer.balance_workers=n2,n3
+	worker.loadbalancer.sticky_session=1
 
-# Status worker for managing load balancer
-worker.status.type=status
+	# Status worker for managing load balancer
+	worker.status.type=status
 
 5.- Reiniciar Apache
 	# service httpd restart
@@ -97,23 +99,36 @@ worker.status.type=status
 	$  bin/asadmin create-node-ssh --nodehost HOSTNAME2 n2
 	$  bin/asadmin create-node-ssh --nodehost HOSTNAME3 n3
 	
-7.- Crear cluster
+7.- Crear cluster 
+	- Si soporta multicast (bin/asadmin validate-multicast)
 	$  bin/asadmin create-create-cluster c1
+	
+	- Si no soporta multicast
+	$  bin/asadmin -W pass create-system-properties GMS_LISTENER_PORT-c1=9090
+	$  bin/asadmin -W pass restart-domain
+	$  bin/asadmin -W pass create-cluster --properties \
+	GMS_DISCOVERY_URI_LIST=HOSTNAMEDAS,HOSTNAME2,HOSTNAME3:GMS_LISTENER_PORT=9090 c1
 
 8.- Crear instancias del cluster
-	$ bin/asadmin -W pass create-instance --node n2 --cluster c1 i2
-	$ bin/asadmin -W pass create-instance --node n3 --cluster c1 i3
+	$ bin/asadmin -W pass create-instance --node n2 --cluster c1 --systemproperties GMS_LISTENER_PORT-c1=9090 i2
+	$ bin/asadmin -W pass create-instance --node n3 --cluster c1 --systemproperties GMS_LISTENER_PORT-c1=9090 i3
 
 9.- Crear conector AJP del cluster
 	$ bin/asadmin -W pass create-network-listener --protocol http-listener-1 \
 	--listenerport 8009 --jkenabled true --target c1 jk-connector
 
-10.- Reciniciar DAS
-	$ sudo /etc/init.d/glassfish
-	
-11.- Desplegar una aplicación (Ej. clusterjsp) dentro del cluster
+10.- Configurar jvmRoute (sticky_session)
+	$ bin/asadmin -W pass create-jvm-options --target c1 "-DjvmRoute=\${AJP_INSTANCE_NAME}"
+	$ bin/asadmin -W pass create-system-properties --target i2 AJP_INSTANCE_NAME=n2
+	$ bin/asadmin -W pass create-system-properties --target i3 AJP_INSTANCE_NAME=n3
 
-8.- Probar, ejecutar:
+11.- Reciniciar DAS
+	$ bin/asadmin -W pass stop-cluster
+	$ bin/asadmin -W pass start-cluster
+	
+12.- Desplegar una aplicación (Ej. clusterjsp) dentro del cluster y seleccionar Availability
+
+13.- Probar, ejecutar:
 	http://HOSTNAME2:28080/clusterjsp/ (GLASSFISH!!!)
 	http://HOSTNAME3:28080/clusterjsp/ (GLASSFISH!!!)
 	http://IP_DAS/clusterjsp/ (mod_jk)

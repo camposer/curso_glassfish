@@ -17,55 +17,55 @@ NOTA:
 	HOME_MOD-JK-SRC$ sudo cp ./apache-2.0/mod_jk.so /etc/httpd/modules/
 
 4.- Crear el fichero de configuración (/etc/httpd/conf.d/mod-jk.conf) para apache:
-# Load mod_jk module
-# Specify the filename of the mod_jk lib
-LoadModule jk_module modules/mod_jk.so
+	# Load mod_jk module
+	# Specify the filename of the mod_jk lib
+	LoadModule jk_module modules/mod_jk.so
 
-# Where to find workers.properties
-JkWorkersFile conf/workers.properties
+	# Where to find workers.properties
+	JkWorkersFile conf/workers.properties
 
-# Where to put jk logs
-JkLogFile logs/mod_jk.log
+	# Where to put jk logs
+	JkLogFile logs/mod_jk.log
 
-# Set the jk log level [debug/error/info]
-JkLogLevel info
+	# Set the jk log level [debug/error/info]
+	JkLogLevel info
 
-# Select the log format
-JkLogStampFormat  "[%a %b %d %H:%M:%S %Y]"
+	# Select the log format
+	JkLogStampFormat  "[%a %b %d %H:%M:%S %Y]"
 
-# JkOptions indicates to send SSK KEY SIZE
-JkOptions +ForwardKeySize +ForwardURICompat -ForwardDirectories
+	# JkOptions indicates to send SSK KEY SIZE
+	JkOptions +ForwardKeySize +ForwardURICompat -ForwardDirectories
 
-# JkRequestLogFormat
-JkRequestLogFormat "%w %V %T"
+	# JkRequestLogFormat
+	JkRequestLogFormat "%w %V %T"
 
-# Mount your applications
-# The default setting only sends Java application data to mod_jk.
-# Use the commented-out line to send all URLs through mod_jk.
-#JkMount /clusterjsp/* loadbalancer
-JkMount /clusterjsp/* worker1
+	# Mount your applications
+	# The default setting only sends Java application data to mod_jk.
+	# Use the commented-out line to send all URLs through mod_jk.
+	JkMount /clusterjsp/* worker1
+	JkMount /clusterjsp worker1
 
-# Add shared memory.
-# This directive is present with 1.2.10 and
-# later versions of mod_jk, and is needed for
-# for load balancing to work properly
-JkShmFile logs/jk.shm
+	# Add shared memory.
+	# This directive is present with 1.2.10 and
+	# later versions of mod_jk, and is needed for
+	# for load balancing to work properly
+	JkShmFile logs/jk.shm
 
-# Add jkstatus for managing runtime data
-<Location /jkstatus/>
-JkMount status
-Order deny,allow
-Deny from all
-Allow from 127.0.0.1
-</Location>
+	# Add jkstatus for managing runtime data
+	<Location /jkstatus/>
+	JkMount status
+	Order deny,allow
+	Deny from all
+	Allow from 127.0.0.1
+	</Location>
 
 4.- Agregar configuraciones de workers (/etc/httpd/conf/workers.properties)
-# Define 1 real worker using ajp13
-worker.list=worker1
-# Set properties for worker1 (ajp13)
-worker.worker1.type=ajp13
-worker.worker1.host=localhost
-worker.worker1.port=8009
+	# Define 1 real worker using ajp13
+	worker.list=worker1
+	# Set properties for worker1 (ajp13)
+	worker.worker1.type=ajp13
+	worker.worker1.host=localhost
+	worker.worker1.port=8009
 
 5.- Reiniciar Apache
 	# service httpd restart
