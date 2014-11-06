@@ -1,0 +1,13 @@
+Ejercicio 2
+===========
+
+Utilizando la línea de comandos!!!
+
+1.- Desplegar la aplicación clusterjsp.war con alta disponibilidad y order 120
+2.- Replegar la aplicación clusterjsp
+3.- Desplegar nuevamente 
+
+---
+
+1.- Volver a desplegar la aplicación todolist.ear. Importante, realizar todas 
+las configuraciones pertinentes pero ahora en cluster!
