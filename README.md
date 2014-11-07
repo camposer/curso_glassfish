@@ -41,3 +41,7 @@ Curso de Glassfish
 	- http://serverfault.com/questions/182289/mod-proxy-vs-mod-proxy-ajp-vs-mod-jk
 - Install the Mod_jk Module Into Apache HTTPD or Enterprise Web Server HTTPD
 	- https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6/html/Administration_and_Configuration_Guide/Install_the_Mod_jk_Module_Into_Apache_HTTPD_or_Enterprise_Web_Server_HTTPD1.html
+- Glassfish Monitoring with VisualVM
+	- http://lifeandshell.com/glassfish-monitoring-with-visualvm/
+- Introduction to Java VisualVM
+	- https://www.youtube.com/watch?v=z8n7Bg7-A4I

@@ -1,0 +1,19 @@
+Ejercicio
+=========
+
+1.- Ver el vídeo: https://www.youtube.com/watch?v=z8n7Bg7-A4I
+2.- Abrir JVisualVM
+	- Si la instalación es local, el proceso es detectado automáticamente.
+	- Si la instalación es remota, debe realizar los siguientes ajustes: Añadir
+	en "server-config –> jvm-settings –> JVM options" los siguientes parámetros:
+
+		-Dcom.sun.management.jmxremote
+		-Dcom.sun.management.jmxremote.port=8686
+		-Dcom.sun.management.jmxremote.local.only=false
+		-Dcom.sun.management.jmxremote.authenticate=false
+		-Dcom.sun.management.jmxremote.ssl=false
+		-Djava.rmi.server.hostname=IP_SERVIDOR <--- IP pública del Servidor
+
+3.- Generar un dump y ver las instancias de String en la aplicación (cuidado!)
+4.- Detectar si la instalación de Glassfish necesita más memoria. En cualquier caso,
+aumentar el tamaño máximo del heap en un 10%.

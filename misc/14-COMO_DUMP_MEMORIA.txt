@@ -1,0 +1,8 @@
+Cómo obtener dumps de memoria por consola
+=========================================
+
+1.- Para generar el dump:
+$ jmap -dump:file=heapdump.hprof 23776
+
+2.- Para leer el dump:
+$ jhat heapdump.hprof
