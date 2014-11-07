@@ -1,8 +1,9 @@
-Ejercicio
-=========
+Ejercicio 3
+===========
 
 1.- Ver el vídeo: https://www.youtube.com/watch?v=z8n7Bg7-A4I
 2.- Configurar JVisualVM (ver 15-COMO_MONITORIZAR_JVISUALVM.txt)
 3.- Generar un dump y ver las instancias de String en la aplicación (cuidado!)
 4.- Detectar si la instalación de Glassfish necesita más memoria. En cualquier caso,
-aumentar el tamaño máximo del heap en un 10%.
+cambiar tamaño máximo del heap (para server-config).
+5.- Cambiar tamaño del heap (para el cluster "c1-config")
