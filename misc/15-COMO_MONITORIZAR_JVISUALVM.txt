@@ -1,0 +1,15 @@
+Cómo monitorizar Glassfish con JVisualVM
+========================================
+
+Si la instalación es local, el proceso es detectado automáticamente.
+
+Si la instalación es remota, debe conectar vía JMX utilizando la la siguiente 
+cadena de conexión IP_DAS:8686 y previamente debe realizar los siguientes ajustes: Añadir
+en "server-config –> jvm-settings –> JVM options" los siguientes parámetros:
+
+	-Dcom.sun.management.jmxremote
+	-Dcom.sun.management.jmxremote.port=8686
+	-Dcom.sun.management.jmxremote.local.only=false
+	-Dcom.sun.management.jmxremote.authenticate=false (si no es especificado utiliza autenticación del servidor)
+	-Dcom.sun.management.jmxremote.ssl=false (generalmente no resulta una buena idea!)
+	-Djava.rmi.server.hostname=IP_SERVIDOR <--- IP pública del Servidor
