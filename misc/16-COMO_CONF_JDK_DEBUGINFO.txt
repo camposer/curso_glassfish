@@ -1,0 +1,7 @@
+Cómo configurrar debuginfo en JDK (RHEL 7)
+=================================
+
+$ sudo yum reposlist all
+$ sudo yum-config-manager --enable "rhui-REGION-rhel-server-debug-optional"
+$ sudo yum-config-manager --enable "rhui-REGION-rhel-server-debug-extras"
+$ sudo debuginfo-install java-1.7.0-openjdk
