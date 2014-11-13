@@ -45,3 +45,5 @@ Curso de Glassfish
 	- http://lifeandshell.com/glassfish-monitoring-with-visualvm/
 - Introduction to Java VisualVM
 	- https://www.youtube.com/watch?v=z8n7Bg7-A4I
+- Understanding Java Garbage Collection
+	- http://www.cubrid.org/blog/dev-platform/understanding-java-garbage-collection/

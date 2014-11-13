@@ -1,0 +1,9 @@
+Cómo configurar opciones JVM en un Cluster (con diferentes valores por instancia)
+==========================================
+
+$ bin/asadmin -W pass create-jvm-options --target c1 \
+"-DXmx=\${JVM_XMX}"
+$ bin/asadmin -W pass create-system-properties --target i2 \
+JVM_XMX=512m
+$ bin/asadmin -W pass create-system-properties --target i3 \
+JVM_XMX=724m

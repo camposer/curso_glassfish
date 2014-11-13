@@ -1,0 +1,54 @@
+Zabbix
+======
+
+Zabbix: http://www.zabbix.com/es/
+Tiene 3 componentes principales:
+	- zabbix-agent: Recolecta información en cada nodo (la envía utilizando SNMP)
+	- zabbix-server: Recolecta información de los agentes y la almacena en la BD
+	- zabbix-web: Interfaz Gráfica Web de Usuario (extrae datos de la BD)
+
+1.- Añadiendo repositorios:
+	- Repo para Zabbix
+	wget http://mirror.uv.es/mirror/fedora-epel/7/x86_64/e/epel-release-7-2.noarch.rpm 
+	sudo rpm -ivh epel-release-7-2.noarch.rpm
+	- Repos para (php-mbstring y php-bcmath)
+	sudo yum-config-manager --enable rhui-REGION-rhel-server-optional 
+
+2.- Instalando zabbix
+	sudo yum install zabbix22-2.2.7-1.el7.x86_64 zabbix22-web-mysql.noarch zabbix22-agent.x86_64 zabbix22-server-mysql.x86_64
+	sudo ln -s /usr/share/zabbix/ /var/www/html/zabbix
+
+	http://SERVER_IP/zabbix
+
+	Añadir timezone al php.ini, por ejemplo y cambiar todos los parámetros con error
+	date.timezone = America/Panama
+
+	sudo service httpd restart
+
+3.- Configurando la BD
+
+mysql -u root
+mysql> CREATE DATABASE zabbix;
+mysql> GRANT ALL privileges ON zabbix.* TO 'zabbix'@'localhost' IDENTIFIED BY 'zabbix';
+
+mysql -u zabbix --password=zabbix -h localhost zabbix < /usr/share/zabbix-mysql/schema.sql
+mysql -u zabbix --password=zabbix -h localhost zabbix < /usr/share/zabbix-mysql/images.sql
+mysql -u zabbix --password=zabbix -h localhost zabbix < /usr/share/zabbix-mysql/data.sql
+
+4.- Accediendo al Zabbix
+Usuario: Admin 
+Contraseña: zabbix
+
+Configuración server
+--------------------
+
+Editar /etc/zabbix_server.conf (aÃ±adir parámetros de BD)
+
+5.- Dar permisos SELinux
+sudo getsebool -a |grep httpd
+sudo setsebool -P httpd_can_network_connect on
+
+6.- Reiniciar zabbix
+sudo service zabbix-server start
+sudo zabbix-agentd start
+
