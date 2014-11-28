@@ -50,5 +50,5 @@ sudo setsebool -P httpd_can_network_connect on
 
 6.- Reiniciar zabbix
 sudo service zabbix-server start
-sudo zabbix-agentd start
+sudo zabbix_agentd start
 
